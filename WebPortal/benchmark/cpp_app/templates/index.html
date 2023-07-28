@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C++ Code Execution</title>
+</head>
+<body>
+    <h1>C++ Code Execution</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Run Benchmark">
+    </form>
+
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    {% if output %}
+    <h2>Output:</h2>
+    <pre>{{ output }}</pre>
+    {% endif %}
+
+    <h2>Previous Benchmarks:</h2>
+    <ul>
+        {% for benchmark in benchmarks %}
+        <li>
+            {{ benchmark.identifier }} - {{ benchmark.name }}
+            <a href="{{ benchmark.csv_file.url }}">Download CSV File</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

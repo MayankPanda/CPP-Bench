@@ -1,0 +1,5 @@
+{% for benchmark in benchmarks %}
+    <p>{{ benchmark.name }} <a href="{% url 'download_csv' benchmark.id %}">Download CSV File</a></p>
+{% empty %}
+    <p>No previous benchmarks.</p>
+{% endfor %}
